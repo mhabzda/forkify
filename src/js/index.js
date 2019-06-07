@@ -118,10 +118,6 @@ elements.shopping.addEventListener('click', e => {
     }
 });
 
-// TODO remove and use storage, it's just for testing purposes
-state.likes = new Likes();
-likesView.toggleLikeMenu(state.likes.getNumberOfLikes());
-
 // LIKE CONTROLLER
 const controlLike = () => {
     if (!state.likes) state.likes = new Likes();
@@ -148,6 +144,16 @@ const controlLike = () => {
 
     likesView.toggleLikeMenu(state.likes.getNumberOfLikes());
 };
+
+// Restore like recipes on page load
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+    state.likes.readStorage();
+
+    likesView.toggleLikeMenu(state.likes.getNumberOfLikes());
+
+    state.likes.likes.forEach(like => likesView.renderLike(like));
+});
 
 // Handle recipe button clicks
 elements.recipe.addEventListener('click', e => {
