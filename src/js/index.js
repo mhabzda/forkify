@@ -63,7 +63,6 @@ elements.searchResPages.addEventListener('click', e => {
 
 const controlRecipe = async () => {
     const id = window.location.hash.replace("#", '');
-    console.log(id);
 
     if (id) {
         recipeView.clearRecipe();
